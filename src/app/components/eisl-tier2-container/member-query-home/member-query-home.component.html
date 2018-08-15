@@ -1,0 +1,93 @@
+<div style="padding-right: 0px;">
+
+  <!--UHG LOGO-->
+  <nav class=" navbar navbar-default navbar-fixed-top " role="navigation " style="background: white; box-shadow: 1px 1px 5px #888; ">
+    <div class="col-md-10 col-sm-10">
+      <img src="https://www.uhc.com/content/dam/uhcdotcom/en/responsive/header-logo.png ">
+    </div>
+
+    <div class="col-md-2 col-sm-2 align-items-center justify-content-center">
+      <a (click)="goSelectService()"><img style="height: 52px; width:50 text-align:center" src="./assets/images/EISL-Schedule.jpg"></a> &nbsp;&nbsp;
+      <a (click)="goHome()"><img style="height: 41px; width:40 text-align:center" src="./assets/images/EISL_Home.jpg"></a>
+    </div>
+  </nav>
+  <div>
+    &nbsp;
+  </div>
+
+  <div class="card card-body mb-3">
+
+    <div class="form-group row">
+
+      <div class="col-sm-2">
+        <label class="col-form-label"><strong>Search UHC Member :</strong></label>
+      </div>
+
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-4 align-items-center justify-content-center">
+            <input type="text" name="memberFirstName" placeholder="Member First Name" class="form-control" id="memberFirstName" [(ngModel)]="member.firstName" value="">
+          </div>
+          <div class="col-sm-4 float-right">
+            <input type="text" name="memberLastName" placeholder="Member Last Name" class="form-control" id="memberLastName" [(ngModel)]="member.lastName" value='{{member.lastName}}'>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <a (click)="findVisitDetails(member.firstName, member.lastName, member.memberId)"><img style="height: 42px; width:40 text-align:center" src="./assets/images/Search.png"></a>&nbsp;&nbsp;
+        <a (click)="formReset()"><img style="height: 42px; width:40 text-align:center" src="./assets/images/Reset.jpg"></a>
+      </div>
+
+    </div>
+
+    <div class="form-group row">
+
+      <div class="col-sm-2">
+        &nbsp;
+      </div>
+
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-4">
+            <input type="text" name="memberUHGId" placeholder="Member UHG Id" class="form-control" id="memberUHGId" [(ngModel)]="member.memberId" value="">
+          </div>
+          <div class="col-sm-4">
+            <input type="date" name="memberDob" placeholder="Member DOB" class="form-control" id="memberDob" [ngModel]="member.dob | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!--<div class="form-group row">
+      <div class="col-sm-2">
+        &nbsp;
+      </div>
+
+      <div class="col-sm-10">
+        <div class="row">
+
+          <div class="col-sm-3">
+            <label class="col-form-label"><strong>Claims</strong></label>&nbsp;
+            <input type="checkbox" id="patientClaims" checked="checked" />
+          </div>
+
+          <div class="col-sm-3">
+            <label class="col-form-label"><strong>Prior Auth</strong></label>&nbsp;
+            <input type="checkbox" id="patientClaims" checked="checked" />
+          </div>
+
+          <div class="col-sm-3">
+            <label class="col-form-label"><strong>Eligibility</strong></label>&nbsp;
+            <input type="checkbox" id="patientClaims" checked="checked" />
+          </div>
+
+        </div>
+      </div>
+
+    </div>-->
+
+  </div>
+
+</div>

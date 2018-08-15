@@ -1,0 +1,77 @@
+<div style="padding-right: 0px;">
+
+  <!--UHG LOGO-->
+  <nav class=" navbar navbar-default navbar-fixed-top " role="navigation " style="background: white; box-shadow: 1px 1px 5px #888; ">
+    <div class="col-md-10 col-sm-10 ">
+      <img src="https://www.uhc.com/content/dam/uhcdotcom/en/responsive/header-logo.png ">
+    </div>
+  </nav>
+  <div>
+    &nbsp;
+  </div>
+
+  <!--EISL Image logo and text -->
+  <div class="row" ng-show="displayMode == 'front'" style="padding:30px;background: #1a6dcf;
+      color: white;">
+    <div class="col-md-6 col-sm-6">
+      <div style="padding: 20px 40px;">
+        <h1 style="margin-bottom: 30px;">Welcome</h1>
+        <h3 style="margin-bottom: 30px;">EMR Integration Service Layer (EISL)</h3>
+        <h6 style="margin-bottom: 30px;">Version 1.0</h6>
+      </div>
+    </div>
+    <div class="col-md-5 col-sm-5 align-items-center justify-content-center">
+      &nbsp;&nbsp;&nbsp;&nbsp;<img style="height: 250px; width:500 text-align:center" src="./assets/images/EISL-landing-logo.png">
+    </div>
+  </div>
+
+  <!--EISL description text -->
+  <div style="text-align:center;
+     padding-top: 5px;background: whitesmoke;
+     padding-bottom: 5px;">
+    <p style="margin-top: 20px;" class="font-weight-bold text-secondary">
+      The EISL Platform is based on the following integration tiers:
+      <br> 1.&nbsp;Inbound Services Tier
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;On-Demand Services Tier
+      <br>Please contact Clinical Data Services team at <a href="mailto:dataacquisitiontechsupport@uhc.com">UHC Clinical Data Acquisition</a> with any questions.
+    </p>
+  </div>
+
+  <div class="row" style="padding-top: 5px;">
+
+    <div class="col-md-4 col-xs-4" style="padding-left: 40px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px;">
+          <i class="fa fa-angle-double-down" style="font-size: 80px;color: #003da0;"></i>
+        </div>
+        <a href="https://orbitbi-tableau.optum.com/t/PDCC/views/ProviderDataCommandCenterPROD/PDCCCCProdEnvironment?:embed=y&:display_count=no&:showVizHome=no#1" class="primary-button-link" target="_blank">
+          <button class="btn btn-block primary-button" style="font-size: 30px;">In-bound Services</button>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-xs-4">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px;">
+          <i class="fa fa-angle-double-down" style="font-size: 80px;color:#003da0;"></i>
+        </div>
+        <!--<a href="${pageContext.request.contextPath}/patientViewer.jsp" class="primary-button-link" target="_self">-->
+          <button class="btn btn-block primary-button" style="font-size: 30px;" (click)="onClick()" routerLink="/onDemandServices">On Demand Services</button>
+        <!--</a>-->
+      </div>
+    </div>
+
+      <div class="col-md-4 col-xs-4" style="padding-right: 40px;">
+        <div class="myBox">
+          <div style="text-align: center;margin-bottom: 5px;">
+            <i class="fa fa-angle-double-down" style="font-size: 80px;color: #003da0;"></i>
+          </div>
+          <button class="btn btn-block btn-secondary" style="font-size:30px; border:1px solid lightgray; color:#999; background:whitesmoke; cursor:not-allowed;">
+            App Services
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>

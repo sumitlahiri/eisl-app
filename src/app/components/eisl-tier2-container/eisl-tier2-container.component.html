@@ -1,0 +1,46 @@
+<div style="padding-right: 0px;">
+
+  <!--UHG LOGO-->
+  <nav class=" navbar navbar-default navbar-fixed-top " role="navigation " style="background: white; box-shadow: 1px 1px 5px #888; ">
+    <div class="col-md-11 col-sm-11">
+      <img src="https://www.uhc.com/content/dam/uhcdotcom/en/responsive/header-logo.png ">
+    </div>
+    <div class="col-md-1 col-sm-1 align-items-center justify-content-center">
+      &nbsp;&nbsp;&nbsp;&nbsp;<a (click)="goHome()"><img style="height: 41px; width:40 text-align:center" src="./assets/images/EISL_Home.jpg"></a>
+    </div>
+  </nav>
+  <div>
+    &nbsp;
+  </div>
+
+  <div class="row" ng-show="displayMode == 'front'" style="padding:30px;background: #1a6dcf;
+      color: white;">
+    <div class="col-md-10 col-sm-10">
+      <div style="padding: 20px 40px;">
+        <h3 style="margin-bottom: 30px;">Welcome to EISL Tier II On Demand Services Home !!</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="padding-top: 5px;">
+
+    <div class="col-md-3 col-xs-3" style="padding-left: 40px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px;">
+          <img style="height: 100px; width:100 text-align:center" src="./assets/images/EISL-Schedule.jpg">
+        </div>
+        <button class="btn btn-block primary-button" style="font-size:20px;" (click)="selectService('schedule')" routerLink="/onDemandScheduling">Scheduling Services</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 40px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px;">
+          <img style="height: 100px; width:100 text-align:center" src="./assets/images/QueryService.png">
+        </div>
+        <button class="btn btn-block primary-button" style="font-size:20px;" (click)="selectService('queryHome')" routerLink="/onDemandMemberQueryHome">Member Query Services</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

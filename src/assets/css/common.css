@@ -1,0 +1,22 @@
+.myBox {
+  padding: 5px;
+  border: 1px solid lightgray;
+  margin: 15px;
+}
+
+.primary-button {
+  background: #196ecf none repeat scroll 0 0;
+  border-radius: 0px;
+  border: none;
+  color: white;
+}
+
+.primary-button:hover {
+  background: #122377 none repeat scroll 0 0;
+  color: white;
+}
+
+.primary-button-link:hover {
+  color: white;
+  text-decoration: none !important;
+}
