@@ -29,7 +29,7 @@
             <input type="text" name="memberFirstName" placeholder="Member First Name" class="form-control" id="memberFirstName" [(ngModel)]="member.firstName" value="">
           </div>
           <div class="col-sm-4 float-right">
-            <input type="text" name="memberLastName" placeholder="Member Last Name" class="form-control" id="memberLastName" [(ngModel)]="member.lastName" value='{{member.lastName}}'>
+            <input type="text" name="memberLastName" placeholder="Member Last Name" class="form-control" id="memberLastName" [(ngModel)]="member.lastName" value="">
           </div>
         </div>
       </div>
@@ -57,7 +57,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <!--<div class="form-group row">
@@ -87,6 +86,52 @@
       </div>
 
     </div>-->
+
+    <div id="visitList" class="container-bg" *ngIf="visits?.length > 0">
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <h5><strong>Visit History for: {{member.lastName}}, {{member.firstName}}</strong></h5>
+        </div>
+      </div>
+
+      <table class="table table-hover table-striped table-bordered">
+        <thead>
+          <tr style="background-color: #196ECF; color:white;">
+            <th><strong>Provider Name</strong></th>
+            <th><strong>HealthSystem</strong></th>
+            <th><strong>Provider Id/TIN</strong></th>
+            <th><strong>Last Provider Visit</strong></th>
+            <th><strong>Last API call</strong></th>
+            <th><strong>Source</strong></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let visit of visits">
+          <tr>
+            <td>
+              <h6><small>{{visit.providerName}}</small></h6></td>
+            <td>
+              <img style="height: 20px; width:20 text-align:center" src="{{visit.ehrImageSrc}}">
+              <!--<h6><small>{{visit.ehrImageSrc}}</small></h6></td>-->
+            <td>
+              <h6><small>{{visit.providerId}}</small></h6></td>
+            <td>
+              <h6><small>{{visit.lastVisitDate}}</small></h6></td>
+            <td>
+              <h6><small>{{today}}</small></h6></td>
+            <td>
+              <h6><small>{{visit.source}}</small></h6></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="noMembers" class="container-bg" *ngIf="showError">
+      <div class="form-group row">
+        <div class="col-sm-8 alert alert-warning" role="alert">
+          <h4><i>No members found for the selection criterion !!</i></h4>
+        </div>
+      </div>
+    </div>
 
   </div>
 
