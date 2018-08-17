@@ -24,3 +24,7 @@
 .table-hover>tbody>tr:hover {
   background-color: lightblue;
 }
+
+.info-bg {
+  background-color: #F6F6F4;
+}

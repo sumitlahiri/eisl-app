@@ -68,5 +68,15 @@ export class MemberQueryHomeComponent implements OnInit {
     this.members = [];
   }
 
+  filterByDateRange() {
+    console.log(" In filterByDateRange");
+  }
 
+  filterBySource() {
+    console.log(" In filterBySource");
+  }
+
+  filterByAddProvider() {
+    console.log(" In filterByAddProvider");
+  }
 }
