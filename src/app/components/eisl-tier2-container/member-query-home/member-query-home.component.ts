@@ -17,6 +17,10 @@ export class MemberQueryHomeComponent implements OnInit {
   showError: boolean = false;
   today: any;
   pipe: any;
+  filterStartDate: any;
+  filterEndDate: any;
+  showFilterByStartDate: boolean = false;
+  visitDate: Date;
 
   constructor(private router: Router, private memberService: MemberService) {
     this.formReset();
@@ -66,10 +70,14 @@ export class MemberQueryHomeComponent implements OnInit {
 
     this.visits = [];
     this.members = [];
+    this.showFilterByStartDate = false;
+    this.filterStartDate = null;
+    this.filterEndDate = null;
   }
 
   filterByDateRange() {
     console.log(" In filterByDateRange");
+    this.showFilterByStartDate = true;
   }
 
   filterBySource() {
@@ -78,5 +86,27 @@ export class MemberQueryHomeComponent implements OnInit {
 
   filterByAddProvider() {
     console.log(" In filterByAddProvider");
+  }
+
+  filterPatientByDateRange(filterStartDate: any, filterEndDate: any) {
+    console.log(" In filterPatientByDateRange, startDate: " + filterStartDate + ' endDate: ' + filterEndDate);
+    this.filterStartDate = this.pipe.transform(new Date(filterStartDate), 'MM-dd-yyyy');
+    this.filterEndDate = this.pipe.transform(new Date(filterEndDate), 'MM-dd-yyyy');
+
+    for (var ind = 0; ind < this.visits.length; ind++) {
+      this.visitDate = this.pipe.transform(new Date(this.visits[ind].lastVisitDate), 'MM-dd-yyyy');
+      if (this.filterStartDate > this.visitDate || this.visitDate > this.filterEndDate) {
+        this.visits[ind].isActive = false;
+      }
+    }
+  }
+
+  filterReset(param: string){
+    //'dvFilterByDateRange'
+    if(param == 'dvFilterByDateRange'){
+      for (var ind = 0; ind < this.visits.length; ind++) {
+        this.visits[ind].isActive = true;
+      }
+    }
   }
 }

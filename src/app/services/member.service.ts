@@ -35,7 +35,7 @@ export class MemberService {
         providerName: "John Medical",
         ehrName: "Allscripts",
         ehrImageSrc: './assets/images/allscripts-logo-green-gray-2x.png',
-        lastVisitDate: '06-13-2013',
+        lastVisitDate: '06-13-2018',
         source: "Claims",
         isActive: true,
         member: {
@@ -50,7 +50,7 @@ export class MemberService {
         providerName: "Elmhurst Hospital",
         ehrName: "Cerner",
         ehrImageSrc: './assets/images/Cerner_RGB_Standard_ horizontal.png',
-        lastVisitDate: '06-15-2013',
+        lastVisitDate: '06-15-2018',
         source: "Claims",
         isActive: true,
         member: {
@@ -65,7 +65,7 @@ export class MemberService {
         providerName: "Florida Orlando Hospital",
         ehrName: "Cerner",
         ehrImageSrc: './assets/images/Cerner_RGB_Standard_ horizontal.png',
-        lastVisitDate: '06-20-2013',
+        lastVisitDate: '07-15-2018',
         source: "Prior Auth",
         isActive: true,
         member: {
@@ -80,7 +80,7 @@ export class MemberService {
         providerName: "Methodist University Hospital",
         ehrName: "Allscripts",
         ehrImageSrc: './assets/images/allscripts-logo-green-gray-2x.png',
-        lastVisitDate: '06-20-2013',
+        lastVisitDate: '07-20-2018',
         source: "Prior Auth",
         isActive: true,
         member: {
@@ -95,7 +95,7 @@ export class MemberService {
         providerName: "CareFirst Clinic",
         ehrName: "Allscripts",
         ehrImageSrc: './assets/images/allscripts-logo-green-gray-2x.png',
-        lastVisitDate: '06-28-2013',
+        lastVisitDate: '07-28-2018',
         source: "Eligibility",
         isActive: true,
         member: {
@@ -110,7 +110,7 @@ export class MemberService {
         providerName: "NorthWestern Hospital",
         ehrName: "Cerner",
         ehrImageSrc: './assets/images/Cerner_RGB_Standard_ horizontal.png',
-        lastVisitDate: '06-08-2013',
+        lastVisitDate: '06-08-2018',
         source: "Eligibility",
         isActive: true,
         member: {

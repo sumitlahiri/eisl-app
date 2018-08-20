@@ -88,15 +88,30 @@
   <div id="filter" class="card card-body container-bg info-bg" style="height: 75px;" *ngIf="visits?.length > 0">
     <div class="row toolbar" style="vertical-align: top;">
       <div class="col-sm-4">
-        <!--<a click="filterByDateRange()" href="#" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><label class="col-form-label"><strong>Filter by Date Range</strong></label></a>-->
-        <a class ='btn' (click)="filterByDateRange()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px; text-decoration: underline; text-decoration-color:blue;"><strong style="text-decoration-color:blue;">Filter by Date Range</strong></a>
+        <a class='btn' (click)="filterByDateRange()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-1"><strong>Filter by Date Range</strong></span></a>
       </div>
       <div class="col-sm-4">
-        <a click="filterBySource()" href="" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><label class="col-form-label"><strong>Filter by Source</strong></label></a>
+        <a class='btn' (click)="filterBySource()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-2"><strong>Filter by Source</strong></span></a>
       </div>
       <div class="col-sm-4">
-        <a click="filterByAddProvider()" href="" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><label class="col-form-label"><strong>Add Provider (by EMR or Provider List)</strong></label></a>
+        <a class='btn' (click)="filterByAddProvider()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-3"><strong>Add Provider (by EMR or Provider List)</strong></span></a>
       </div>
+    </div>
+  </div>
+
+  <div id="dvFilterByDateRange" class="row toolbar" style="padding:15px 0px;  background:floralwhite; margin: 0px; border-top: 1px solid lightgray;" *ngIf="showFilterByStartDate">
+    <div class="col-sm-4">
+      <div><label class="col-form-label"><strong>Start Date</strong></label>&nbsp;&nbsp;</div>
+      <!-- <input type="date" name="memberDob" placeholder="Member DOB" class="form-control" id="memberDob" [ngModel]="member.dob | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event"> -->
+      <div><input type="date" name="filterStartDate" class="form-control" id="filterStartDate" [ngModel]="filterStartDate | date:'yyyy-MM-dd'" (ngModelChange)="filterStartDate = $event"></div>
+    </div>
+    <div class="col-sm-4">
+      <div><label class="col-form-label"><strong>End Date</strong></label>&nbsp;&nbsp;</div>
+      <div><input type="date" name="filterEndDate" class="form-control" id="filterEndDate" [ngModel]="filterEndDate | date:'yyyy-MM-dd'" (ngModelChange)="filterEndDate = $event"></div>
+    </div>
+    <div class="col-sm-4">
+      &nbsp;&nbsp;<button type="button" class="btn primary-button" (click)="filterPatientByDateRange(filterStartDate,filterEndDate)">Filter</button> &nbsp;&nbsp;
+      <button type="button" class="btn primary-button" (click)="filterReset('dvFilterByDateRange')">Reset</button>
     </div>
   </div>
 
@@ -120,7 +135,7 @@
           </tr>
         </thead>
         <tbody *ngFor="let visit of visits">
-          <tr>
+          <tr *ngIf="visit.isActive">
             <td>
               <h6><small>{{visit.providerName}}</small></h6></td>
             <td>

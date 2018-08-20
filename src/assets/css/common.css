@@ -28,3 +28,9 @@
 .info-bg {
   background-color: #F6F6F4;
 }
+
+.fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
