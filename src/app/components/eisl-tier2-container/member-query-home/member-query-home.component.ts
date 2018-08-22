@@ -4,6 +4,7 @@ import { VisitDetail } from '../../../models/visit-detail';
 import { Router } from '@angular/router';
 import { MemberService } from '../../../services/member.service';
 import { DatePipe } from '@angular/common';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-member-query-home',
@@ -20,10 +21,25 @@ export class MemberQueryHomeComponent implements OnInit {
   filterStartDate: any;
   filterEndDate: any;
   showFilterByStartDate: boolean = false;
+  showFilterBySource: boolean = false;
+  showAddProvider: boolean = false;
+  form: FormGroup;
+  patientClaimsChkBox: boolean = true;
+  patientClaims = [
+    { id: 'claims', name: 'Claims' },
+    { id: 'priorAuth', name: 'Prior Auth' },
+    { id: 'eligibility', name: 'Eligibility' }
+  ]
+
   visitDate: Date;
 
-  constructor(private router: Router, private memberService: MemberService) {
+  constructor(private router: Router, private memberService: MemberService, private formBuilder: FormBuilder) {
     this.formReset();
+
+    const controls = this.patientClaims.map(c => new FormControl(true));
+    this.form = this.formBuilder.group({
+      patientClaims: new FormArray(controls)
+    });
   }
 
   ngOnInit() {
@@ -78,18 +94,28 @@ export class MemberQueryHomeComponent implements OnInit {
   filterByDateRange() {
     console.log(" In filterByDateRange");
     this.showFilterByStartDate = true;
+    this.showFilterBySource = false;
+    this.showAddProvider = false;
   }
 
   filterBySource() {
     console.log(" In filterBySource");
+    this.showFilterBySource = true;
+    this.showFilterByStartDate = false;
+    this.showAddProvider = false;
+
+
   }
 
   filterByAddProvider() {
     console.log(" In filterByAddProvider");
+    this.showAddProvider = true;
+    this.showFilterBySource = false;
+    this.showFilterByStartDate = false;
   }
 
-  filterPatientByDateRange(filterStartDate: any, filterEndDate: any) {
-    console.log(" In filterPatientByDateRange, startDate: " + filterStartDate + ' endDate: ' + filterEndDate);
+  filterVisitByDateRange(filterStartDate: any, filterEndDate: any) {
+    console.log(" In filterVisitByDateRange, startDate: " + filterStartDate + ' endDate: ' + filterEndDate);
     this.filterStartDate = this.pipe.transform(new Date(filterStartDate), 'MM-dd-yyyy');
     this.filterEndDate = this.pipe.transform(new Date(filterEndDate), 'MM-dd-yyyy');
 
@@ -101,12 +127,29 @@ export class MemberQueryHomeComponent implements OnInit {
     }
   }
 
-  filterReset(param: string){
+  filterVisitBySource(patientClaim: string, event: any) {
+    console.log(" In filterVisitBySource " + event.target.checked + " , " + patientClaim);
+    for (var ind = 0; ind < this.visits.length; ind++) {
+      if (this.visits[ind].source == patientClaim && !event.target.checked) {
+        this.visits[ind].isActive = false;
+      }
+    }
+  }
+
+  filterReset(param: string) {
     //'dvFilterByDateRange'
-    if(param == 'dvFilterByDateRange'){
+    if (param == 'dvFilterByDateRange') {
       for (var ind = 0; ind < this.visits.length; ind++) {
         this.visits[ind].isActive = true;
       }
+    } else if (param == 'dvFilterBySource') { //'dvFilterBySource'
+      for (var ind = 0; ind < this.visits.length; ind++) {
+        this.visits[ind].isActive = true;
+      }
+      const controls = this.patientClaims.map(c => new FormControl(true));
+      this.form = this.formBuilder.group({
+        patientClaims: new FormArray(controls)
+      });
     }
   }
 }

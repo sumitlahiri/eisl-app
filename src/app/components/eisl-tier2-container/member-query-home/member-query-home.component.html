@@ -99,6 +99,7 @@
     </div>
   </div>
 
+<!--Filter by Date Range -->
   <div id="dvFilterByDateRange" class="row toolbar" style="padding:15px 0px;  background:floralwhite; margin: 0px; border-top: 1px solid lightgray;" *ngIf="showFilterByStartDate">
     <div class="col-sm-4">
       <div><label class="col-form-label"><strong>Start Date</strong></label>&nbsp;&nbsp;</div>
@@ -110,10 +111,27 @@
       <div><input type="date" name="filterEndDate" class="form-control" id="filterEndDate" [ngModel]="filterEndDate | date:'yyyy-MM-dd'" (ngModelChange)="filterEndDate = $event"></div>
     </div>
     <div class="col-sm-4">
-      &nbsp;&nbsp;<button type="button" class="btn primary-button" (click)="filterPatientByDateRange(filterStartDate,filterEndDate)">Filter</button> &nbsp;&nbsp;
+      &nbsp;&nbsp;<button type="button" class="btn primary-button" (click)="filterVisitByDateRange(filterStartDate,filterEndDate)">Filter</button> &nbsp;&nbsp;
       <button type="button" class="btn primary-button" (click)="filterReset('dvFilterByDateRange')">Reset</button>
     </div>
   </div>
+
+<!--Filter by Source -->
+  <form [formGroup]="form" novalidate>
+    <div id="dvFilterBySource" class="row toolbar" style="padding:15px 0px;  background:floralwhite; margin: 0px; border-top: 1px solid lightgray;" *ngIf="showFilterBySource">
+      <div *ngFor="let patientClaim of form.controls.patientClaims.controls; let i = index">
+        <div class="col-sm-12">
+          <label class="col-form-label"><strong>{{patientClaims[i].name}}</strong></label>&nbsp;
+          <input type="checkbox" [formControl]="patientClaim" [value]="patientClaim" [(checked)]="patientClaimsChkBox" (change)="filterVisitBySource(patientClaims[i].name, $event)">
+        </div>
+      </div>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn primary-button" (click)="filterReset('dvFilterBySource')">Reset</button>
+    </div>
+  </form>
+
+
+
 
   <div id="tableResult" class="card card-body mb-3" *ngIf="visits?.length > 0">
     <div id="visitList" class="container-bg">
