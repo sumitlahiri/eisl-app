@@ -30,7 +30,15 @@
 }
 
 .fake-link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.blue-text {
+  color: blue;
+}
+
+.grey-text {
+  color: grey;
 }

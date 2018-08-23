@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../../../models/member';
+import { VitalSigns } from '../../../models/vital-signs';
 import { VisitDetail } from '../../../models/visit-detail';
 import { Router } from '@angular/router';
 import { MemberService } from '../../../services/member.service';
+import { ResourceResolverService } from '../../../services/resource-resolver.service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-member-query-home',
@@ -23,6 +26,7 @@ export class MemberQueryHomeComponent implements OnInit {
   showFilterByStartDate: boolean = false;
   showFilterBySource: boolean = false;
   showAddProvider: boolean = false;
+  showResourceSection: boolean = false;
   form: FormGroup;
   patientClaimsChkBox: boolean = true;
   patientClaims = [
@@ -32,8 +36,13 @@ export class MemberQueryHomeComponent implements OnInit {
   ]
 
   visitDate: Date;
+  selectedEMR: string = '';
+  selectedProvider: string = '';
+  vitalsigns: string = '';
+  errorInServiceCall: boolean = false;
+  errorText: string = '';
 
-  constructor(private router: Router, private memberService: MemberService, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private memberService: MemberService, private formBuilder: FormBuilder, private spinner: NgxSpinnerService, private resourceService: ResourceResolverService) {
     this.formReset();
 
     const controls = this.patientClaims.map(c => new FormControl(true));
@@ -57,17 +66,21 @@ export class MemberQueryHomeComponent implements OnInit {
 
   findVisitDetails(firstName: string, lastName: string, memberId: string): VisitDetail[] {
     this.members = this.memberService.getMemberDetails();
+    this.showResourceSection = false;
 
     for (var ind = 0; ind < this.members.length; ind++) {
       if (this.members[ind].lastName == lastName || this.members[ind].firstName == firstName || this.members[ind].memberId == memberId) {
         this.visits = this.memberService.getVisitDetails(memberId);
         this.member = this.members[ind];
         this.showError = false;
-      } else {
-        this.formReset();
-        this.showError = true;
       }
     }
+
+    if (this.visits.length == 0) {
+      this.formReset();
+      this.showError = true;
+    }
+
     console.log('Visits Length :' + this.visits.length);
     return this.visits;
   }
@@ -89,6 +102,7 @@ export class MemberQueryHomeComponent implements OnInit {
     this.showFilterByStartDate = false;
     this.filterStartDate = null;
     this.filterEndDate = null;
+    this.showResourceSection = false;
   }
 
   filterByDateRange() {
@@ -151,5 +165,32 @@ export class MemberQueryHomeComponent implements OnInit {
         patientClaims: new FormArray(controls)
       });
     }
+  }
+
+  getResourceList(selectedEMR: string, selectedProvider: string) {
+    console.log(" In getResourceList ");
+    this.showResourceSection = true;
+    this.selectedEMR = selectedEMR;
+    this.selectedProvider = selectedProvider;
+
+    this.getVitalSigns('','','');
+  }
+
+  getVitalSigns(ehrId: string, patientId: string, emrName: string) {
+    console.log(" In getVitalSigns ");
+    this.spinner.show();
+
+    this.resourceService.resolveGetVitalSigns('1', '10002752').subscribe((data: VitalSigns) => {
+      if (data.error == null) {
+        console.log("In MemberQuery Component, getVitalSigns, in Subscribe :" + data.vitalsigns);
+        this.vitalsigns = data.vitalsigns;
+        this.errorInServiceCall = false;
+        this.spinner.hide();
+      } else {
+        this.errorText = data.error;
+        this.errorInServiceCall = true;
+        this.spinner.hide();
+      }
+    })
   }
 }

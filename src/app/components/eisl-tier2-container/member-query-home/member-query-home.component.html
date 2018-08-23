@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div style="padding-right: 0px;">
 
   <!--UHG LOGO-->
@@ -85,62 +86,63 @@
     </div>-->
   </div>
 
-  <div id="filter" class="card card-body container-bg info-bg" style="height: 75px;" *ngIf="visits?.length > 0">
-    <div class="row toolbar" style="vertical-align: top;">
-      <div class="col-sm-4">
-        <a class='btn' (click)="filterByDateRange()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-1"><strong>Filter by Date Range</strong></span></a>
-      </div>
-      <div class="col-sm-4">
-        <a class='btn' (click)="filterBySource()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-2"><strong>Filter by Source</strong></span></a>
-      </div>
-      <div class="col-sm-4">
-        <a class='btn' (click)="filterByAddProvider()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-3"><strong>Add Provider (by EMR or Provider List)</strong></span></a>
-      </div>
-    </div>
-  </div>
 
-<!--Filter by Date Range -->
-  <div id="dvFilterByDateRange" class="row toolbar" style="padding:15px 0px;  background:floralwhite; margin: 0px; border-top: 1px solid lightgray;" *ngIf="showFilterByStartDate">
-    <div class="col-sm-4">
-      <div><label class="col-form-label"><strong>Start Date</strong></label>&nbsp;&nbsp;</div>
-      <!-- <input type="date" name="memberDob" placeholder="Member DOB" class="form-control" id="memberDob" [ngModel]="member.dob | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event"> -->
-      <div><input type="date" name="filterStartDate" class="form-control" id="filterStartDate" [ngModel]="filterStartDate | date:'yyyy-MM-dd'" (ngModelChange)="filterStartDate = $event"></div>
-    </div>
-    <div class="col-sm-4">
-      <div><label class="col-form-label"><strong>End Date</strong></label>&nbsp;&nbsp;</div>
-      <div><input type="date" name="filterEndDate" class="form-control" id="filterEndDate" [ngModel]="filterEndDate | date:'yyyy-MM-dd'" (ngModelChange)="filterEndDate = $event"></div>
-    </div>
-    <div class="col-sm-4">
-      &nbsp;&nbsp;<button type="button" class="btn primary-button" (click)="filterVisitByDateRange(filterStartDate,filterEndDate)">Filter</button> &nbsp;&nbsp;
-      <button type="button" class="btn primary-button" (click)="filterReset('dvFilterByDateRange')">Reset</button>
-    </div>
-  </div>
+  <!--Visit Details Section -->
+  <div id="tableResult" class="card card-body mb-3" *ngIf="visits?.length > 0 && !showResourceSection">
 
-<!--Filter by Source -->
-  <form [formGroup]="form" novalidate>
-    <div id="dvFilterBySource" class="row toolbar" style="padding:15px 0px;  background:floralwhite; margin: 0px; border-top: 1px solid lightgray;" *ngIf="showFilterBySource">
-      <div *ngFor="let patientClaim of form.controls.patientClaims.controls; let i = index">
-        <div class="col-sm-12">
-          <label class="col-form-label"><strong>{{patientClaims[i].name}}</strong></label>&nbsp;
-          <input type="checkbox" [formControl]="patientClaim" [value]="patientClaim" [(checked)]="patientClaimsChkBox" (change)="filterVisitBySource(patientClaims[i].name, $event)">
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <label class="col-form-label"><strong>Visit History for : {{member.lastName}}, {{member.firstName}}</strong></label>
+        <!--<h5><strong>Visit History for: {{member.lastName}}, {{member.firstName}}</strong></h5>-->
+      </div>
+    </div>
+
+    <div id="filter" class="card card-body container-bg info-bg form-group row" style="height: 60px;">
+      <div class="row toolbar" style="vertical-align: top;">
+        <div class="col-sm-4">
+          <a class='btn' (click)="filterByDateRange()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-1">Filter by Date Range</span></a>
+        </div>
+        <div class="col-sm-4">
+          <a class='btn' (click)="filterBySource()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-2">Filter by Source</span></a>
+        </div>
+        <div class="col-sm-4">
+          <a class='btn' (click)="filterByAddProvider()" style="margin-right: 20px; background: whitesmoke; padding: 5px 20px;"><span class="fake-link" id="fake-link-3">Add Provider (by EMR or Provider List)</span></a>
         </div>
       </div>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn primary-button" (click)="filterReset('dvFilterBySource')">Reset</button>
     </div>
-  </form>
 
+    <!--Filter by Date Range -->
+    <div id="dvFilterByDateRange" class="form-group row toolbar" style="padding:15px 0px;  background:floralwhite; margin: 0px; border-top: 1px solid lightgray;" *ngIf="showFilterByStartDate">
+      <div class="col-sm-4">
+        <div><label class="col-form-label"><strong>Start Date</strong></label>&nbsp;&nbsp;</div>
+        <!-- <input type="date" name="memberDob" placeholder="Member DOB" class="form-control" id="memberDob" [ngModel]="member.dob | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event"> -->
+        <div><input type="date" name="filterStartDate" class="form-control" id="filterStartDate" [ngModel]="filterStartDate | date:'yyyy-MM-dd'" (ngModelChange)="filterStartDate = $event"></div>
+      </div>
+      <div class="col-sm-4">
+        <div><label class="col-form-label"><strong>End Date</strong></label>&nbsp;&nbsp;</div>
+        <div><input type="date" name="filterEndDate" class="form-control" id="filterEndDate" [ngModel]="filterEndDate | date:'yyyy-MM-dd'" (ngModelChange)="filterEndDate = $event"></div>
+      </div>
+      <div class="col-sm-4">
+        &nbsp;&nbsp;<button type="button" class="btn primary-button" (click)="filterVisitByDateRange(filterStartDate,filterEndDate)">Filter</button> &nbsp;&nbsp;
+        <button type="button" class="btn primary-button" (click)="filterReset('dvFilterByDateRange')">Reset</button>
+      </div>
+    </div>
 
+    <!--Filter by Source -->
+    <form [formGroup]="form" novalidate>
+      <div id="dvFilterBySource" class="form-group row toolbar" style="padding:15px 0px;  background:floralwhite; margin: 0px; border-top: 1px solid lightgray;" *ngIf="showFilterBySource">
+        <div *ngFor="let patientClaim of form.controls.patientClaims.controls; let i = index">
+          <div class="col-sm-12">
+            <label class="col-form-label"><strong>{{patientClaims[i].name}}</strong></label>&nbsp;
+            <input type="checkbox" [formControl]="patientClaim" [value]="patientClaim" [(checked)]="patientClaimsChkBox" (change)="filterVisitBySource(patientClaims[i].name, $event)">
+          </div>
+        </div>
 
+        &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn primary-button" (click)="filterReset('dvFilterBySource')">Reset</button>
+      </div>
+    </form>
 
-  <div id="tableResult" class="card card-body mb-3" *ngIf="visits?.length > 0">
     <div id="visitList" class="container-bg">
-      <div class="form-group row">
-        <div class="col-sm-12">
-          <h5><strong>Visit History for: {{member.lastName}}, {{member.firstName}}</strong></h5>
-        </div>
-      </div>
-
       <table class="table table-hover table-striped table-bordered table-sm">
         <thead>
           <tr style="background-color: #196ECF; color:white;">
@@ -150,6 +152,7 @@
             <th><strong>Last Provider Visit</strong></th>
             <th><strong>Last API call</strong></th>
             <th><strong>Source</strong></th>
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody *ngFor="let visit of visits">
@@ -166,19 +169,45 @@
                 <h6><small>{{today}}</small></h6></td>
               <td>
                 <h6><small>{{visit.source}}</small></h6></td>
+              <td><a (click)="getResourceList(visit.ehrName, visit.providerName)"><img style="height: 32px; width:30 text-align:center" src="./assets/images/ShowDetails.png"></a></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div id="noMembers" class="container-bg" *ngIf="showError">
-      <div class="form-group row">
-        <div class="col-sm-8 alert alert-warning" role="alert">
-          <h4><i>No members found for the selection criterion !!</i></h4>
+  </div>
+
+  <!--Resource section for each Visit -->
+  <div id="resourceSectionInfo" class="card card-body mb-3" *ngIf="showResourceSection">
+    <div class="form-group info-bg">
+      <div class="row">
+        <div class="col-sm-6">
+          &nbsp;&nbsp;<label class="col-form-label grey-text"><strong>Visit History for:</strong></label> &nbsp;&nbsp; <label class="col-form-label blue-text"><strong>{{member.lastName}}, {{member.firstName}}</strong></label>
+        </div>
+        <div class="col-sm-6">
+          <label class="col-form-label grey-text"><strong>HealthSystem:</strong></label> &nbsp;&nbsp; <label class="col-form-label blue-text"><strong>{{selectedEMR}}</strong></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          &nbsp;&nbsp;<label class="col-form-label grey-text"><strong>Provider:</strong></label> &nbsp;&nbsp; <label class="col-form-label blue-text"><strong>{{selectedProvider}}</strong></label>
+        </div>
+        <div class="col-sm-6">
+          <label class="col-form-label grey-text"><strong>Verssion:</strong></label> &nbsp;&nbsp; <label class="col-form-label blue-text"><strong>N/A</strong></label>
         </div>
       </div>
     </div>
 
+      <div id="resourceSectionDetails" class="container-bg">
+      </div>
+  </div>
+
+  <div id="noVisits" class="container-bg" *ngIf="showError">
+    <div class="form-group row">
+      <div class="col-sm-8 alert alert-warning" role="alert">
+        <h4><i>No members found for the selection criterion !!</i></h4>
+      </div>
+    </div>
   </div>
 
 </div>
