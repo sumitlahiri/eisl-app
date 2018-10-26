@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { EislTier2ContainerComponent } from './components/eisl-tier2-container/eisl-tier2-container.component';
 import { ScheduleComponent } from './components/eisl-tier2-container/schedule/schedule.component';
 import { MemberQueryHomeComponent } from './components/eisl-tier2-container/member-query-home/member-query-home.component';
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MemberQueryHomeComponent } from './components/eisl-tier2-container/memb
     HomeComponent,
     EislTier2ContainerComponent,
     ScheduleComponent,
-    MemberQueryHomeComponent
+    MemberQueryHomeComponent,
+    UnderConstructionComponent
   ],
   imports: [
     BrowserModule,

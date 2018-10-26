@@ -13,11 +13,11 @@
     &nbsp;
   </div>
 
-  <div class="row" ng-show="displayMode == 'front'" style="padding:30px;background: #1a6dcf;
+  <div class="row" ng-show="displayMode == 'front'" style="padding:5px; background:#1a6dcf;
       color: white;">
     <div class="col-md-10 col-sm-10">
-      <div style="padding: 20px 40px;">
-        <h3 style="margin-bottom: 30px;">Welcome to EISL Tier II On Demand Services Home !!</h3>
+      <div style="padding: 20px;">
+        <h3 style="margin-bottom: 5px;">Welcome to EISL Tier II On Demand Services Home !!</h3>
       </div>
     </div>
   </div>
@@ -27,17 +27,105 @@
     <div class="col-md-3 col-xs-3" style="padding-left: 40px;">
       <div class="myBox">
         <div style="text-align: center;margin-bottom: 5px;">
-          <img style="height: 100px; width:100 text-align:center" src="./assets/images/EISL-Schedule.jpg">
+          <img style="height: 100px; text-align:center" src="./assets/images/EISL-Schedule.jpg">
         </div>
-        <button class="btn btn-block primary-button" style="font-size:20px;" (click)="selectService('schedule')" routerLink="/onDemandScheduling">Scheduling Services</button>
+        <a href="http://10.87.182.125:8080/schedule-based-app/" class="primary-button-link" target="_blank">
+          <button class="btn btn-block primary-button" style="font-size:20px;">Scheduling Services</button>
+        </a>
       </div>
     </div>
     <div class="col-md-3 col-xs-3" style="padding-left: 40px;">
       <div class="myBox">
         <div style="text-align: center;margin-bottom: 5px;">
-          <img style="height: 100px; width:100 text-align:center" src="./assets/images/QueryService.png">
+          <img style="height: 100px; text-align:center" src="./assets/images/QueryService.png">
         </div>
-        <button class="btn btn-block primary-button" style="font-size:20px;" (click)="selectService('queryHome')" routerLink="/onDemandMemberQueryHome">Member Query Services</button>
+        <a href="http://10.87.182.125:8080/fhir-web-app/patientViewer.jsp" class="primary-button-link" target="_blank">
+        <button class="btn btn-block primary-button" style="font-size:20px;">Member Query Services</button>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 20px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px;">
+          <img style="text-align:center" src="./assets/images/Hedis_Logo.png">
+        </div>
+        <button disabled class="btn btn-block btn-secondary" style="font-size:20px;">HEDIS Gaps In Care</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 20px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px; padding-top:15px; padding-bottom:20px;">
+          <img style="text-align:center" src="./assets/images/LabCorp.png">
+        </div>
+        <button disabled class="btn btn-block btn-secondary" style="font-size:20px;">LabCorp Services</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" style="padding-top: 5px;">
+
+    <div class="col-md-3 col-xs-3" style="padding-left: 20px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px;">
+          <img style="height: 100px; width: 300px; text-align:center" src="./assets/images/athena_health_logo.jpg">
+        </div>
+        <button disabled class="btn btn-block btn-secondary" style="font-size:20px;">AthenaHealth EHR Services</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 20px;">
+      <div class="myBox">
+        <div style="text-align: center; margin-bottom: 24px; padding-top:20px;">
+          <img style="text-align:center" src="./assets/images/allscripts-logo-green-gray-2x.png">
+        </div>
+        <button disabled class="btn btn-block btn-secondary" style="font-size:20px;">Allscripts EHR Services</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 20px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px; padding-top:15px; padding-bottom:15px;">
+          <img style="text-align:center" src="./assets/images/Cerner_RGB_Standard_ horizontal.png">
+        </div>
+        <button disabled class="btn btn-block btn-secondary" style="font-size:20px;">Cerner EHR Services</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 20px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px;">
+          <img style="text-align:center" src="./assets/images/PatientEncounter.png">
+        </div>
+        <button disabled class="btn btn-block btn-secondary" style="font-size:20px;">Encounter Services</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" style="padding-top: 5px;">
+
+    <div class="col-md-3 col-xs-3" style="padding-left: 20px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px; padding-top:25px; padding-bottom:20px;">
+          <img style="text-align:center" src="./assets/images/CentriHealth.jpg">
+        </div>
+        <button disabled class="btn btn-block btn-secondary" style="font-size:20px;">CentriHealth Services</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 40px;">
+      <div class="myBox">
+        <div style="text-align: center;margin-bottom: 5px;">
+          <img style="text-align:center" src="./assets/images/member_eligibility.gif">
+        </div>
+        <button disabled class="btn btn-block btn-secondary" style="font-size:20px;">Eligibility Services</button>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 40px;">
+      <div>
+        &nbsp;
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3" style="padding-left: 40px;">
+      <div>
+        &nbsp;
       </div>
     </div>
 

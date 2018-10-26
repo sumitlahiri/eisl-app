@@ -22,6 +22,10 @@ export class EislTier2ContainerComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  goConstructionPage(){
+    this.router.navigate(['/underConstruction']);
+  }
+
   ngOnInit() {
   }
 

@@ -4,12 +4,14 @@ import { HomeComponent } from './components/home/home.component';
 import { EislTier2ContainerComponent } from './components/eisl-tier2-container/eisl-tier2-container.component';
 import { ScheduleComponent } from './components/eisl-tier2-container/schedule/schedule.component';
 import { MemberQueryHomeComponent } from './components/eisl-tier2-container/member-query-home/member-query-home.component';
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'onDemandServices', component: EislTier2ContainerComponent },
   { path: 'onDemandScheduling', component: ScheduleComponent },
-  { path: 'onDemandMemberQueryHome', component: MemberQueryHomeComponent }
+  { path: 'onDemandMemberQueryHome', component: MemberQueryHomeComponent },
+  { path: 'underConstruction', component: UnderConstructionComponent }
 ];
 
 @NgModule({
